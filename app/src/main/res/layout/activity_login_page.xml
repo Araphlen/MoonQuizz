@@ -29,7 +29,7 @@
         android:orientation="vertical"
         android:layout_gravity="center">
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="joueur1"
         android:layout_gravity="center"/>
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="joueur2"
         android:layout_gravity="center"/>
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="joueur3"
         android:layout_gravity="center"/>
