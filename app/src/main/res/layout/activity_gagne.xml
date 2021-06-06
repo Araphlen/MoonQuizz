@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MoonQuizz"
+            android:text="@string/app_name"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -41,12 +41,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bravo! Tu as trouvé la bonne réponse!"
+        android:text="@string/felicitation_bonne_reponse"
         android:gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tiens ! Tu as gagné un cookie!"
+        android:text="@string/felicitation_texte"
         android:layout_gravity="center"/>
 
     <TextView
@@ -65,7 +65,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Question Suivante"
+            android:text="@string/question_suivante"
             />
 
         <TextView
@@ -75,7 +75,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Menu question"
+            android:text="@string/menu_question_btn"
             />
         <TextView
             android:layout_width="wrap_content"

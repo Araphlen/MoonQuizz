@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MoonQuizz"
+        android:text="@string/app_name"
         android:gravity="center" />
     <TextView
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Qui est tu?"
+        android:text="@string/qui_est_tu"
         android:gravity="center" />
     <TextView
         android:layout_width="match_parent"
@@ -29,9 +29,10 @@
         android:orientation="vertical"
         android:layout_gravity="center">
     <Button
+        android:drawableLeft="@drawable/Avatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="joueur1"
+        android:text="@string/ex_joueur"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="match_parent"
@@ -39,7 +40,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="joueur2"
+        android:text="@string/ex_joueur"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="match_parent"
@@ -47,7 +48,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="joueur3"
+        android:text="@string/ex_joueur"
         android:layout_gravity="center"/>
 
     </LinearLayout>

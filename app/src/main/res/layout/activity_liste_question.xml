@@ -50,15 +50,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Theme"/>
+            android:text="@string/theme"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" : "/>
+            android:text="@string/deux_points"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Niveau"/>
+            android:text="@string/ex_niveau"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Question 1"
+            android:text="@string/question"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="match_parent"
@@ -87,15 +87,16 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Question 2"
+            android:text="string/question"
             android:layout_gravity="center"/>
+        <!-- on va  -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="15dp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Question 3"
+            android:text="string/question"
             android:layout_gravity="center"/>
     </LinearLayout>
 
