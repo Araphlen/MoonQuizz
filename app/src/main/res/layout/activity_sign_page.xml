@@ -32,6 +32,7 @@
             />
 
         <EditText
+            android:id="@+id/prenom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -56,6 +57,7 @@
             />
 
         <EditText
+            android:id="@+id/nom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -68,6 +70,7 @@
         android:layout_weight="1"
         />
     <Button
+        android:id="@+id/valider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

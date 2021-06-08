@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class DAOBase{
 
-        protected final static String NOM = "database.db";
+        protected final static String NOM = "../data/mobile.db";
         private int version=1;
         private MySQLiteOpenHelper accesDB;
         protected SQLiteDatabase db = null;
@@ -87,7 +87,7 @@ public class DAOBase{
         db.execSQL(req);
     }
 
-    public ArrayList selectUser(){
+    public ArrayList<utilisateurs> selectUser(){
             db=accesDB.getReadableDatabase();
         ArrayList tableau = new ArrayList();
         String req ="Select * from utilisateurs";
@@ -103,6 +103,16 @@ public class DAOBase{
 
         }
         return tableau;
+    }
+
+    public utilisateurs getUser(String nom, String prenom){
+        db=accesDB.getReadableDatabase();
+        String req="Select * from utilisateurs where prenom="+prenom+" and nom="+nom;
+        Cursor curseur=db.rawQuery(req, null);
+        String avatar=curseur.getString(3);
+        int id = curseur.getInt(4);
+        utilisateurs user= new utilisateurs(prenom, nom, avatar, id);
+        return user;
     }
 
     public boolean questValide(int idQuest, int idUser){
