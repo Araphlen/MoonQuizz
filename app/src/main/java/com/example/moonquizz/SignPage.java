@@ -1,6 +1,8 @@
 package com.example.moonquizz;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.view.*;
 import android.widget.TextView;
 
@@ -16,6 +18,8 @@ public class SignPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_page);
         this.controler= controler.getInstance(this);
+        inscrire();
+        retour();
     }
 
     private controler controler;
@@ -33,17 +37,29 @@ public class SignPage extends AppCompatActivity {
                     prenom=repprenom.getText().toString();
                 }catch (Exception e){
                 }
-                if(nom == "" || prenom == ""){
+                if(nom.equals("") || prenom.equals("")){
                     Toast.makeText(SignPage.this, "Veuillez saisir un Nom et un Prenom", Toast.LENGTH_LONG).show();
                 } else{
-                    ajout(nom, prenom);
+                    ajout(prenom, nom);
+                    Intent intent= new Intent(SignPage.this, ThemePage.class);
+                    startActivity(intent);
                 }
             }
         });
     }
 
-    private void ajout(String nom, String prenom){
-        this.controler.ajoutUtilisateur(nom, prenom, "");
+    private void ajout(String prenom, String nom){
+        this.controler.ajoutUtilisateur(prenom, nom, "avatar");
 
+    }
+
+    private void retour(){
+        findViewById(R.id.home).setOnClickListener(new  View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(SignPage.this,StartPage.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
     }
 }

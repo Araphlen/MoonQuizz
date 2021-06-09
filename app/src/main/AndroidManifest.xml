@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoonQuizz">
-        <activity android:name=".Perdu"></activity>
+        <activity android:name=".ChangeAvatar"></activity>
+        <activity android:name=".SupprimerPage" />
+        <activity android:name=".Perdu" />
         <activity android:name=".Gagne" />
         <activity android:name=".QuestionClassic" />
         <activity android:name=".QCM" />

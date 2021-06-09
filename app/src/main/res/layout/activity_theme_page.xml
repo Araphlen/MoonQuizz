@@ -14,27 +14,20 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/home"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/home"
 
             />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MoonQuizz"
-        />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
-    <Button
+    <ImageButton
+        android:id="@+id/avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/avatar" />
@@ -42,37 +35,55 @@
     </LinearLayout>
 
 
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"/>
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="General"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mathématiques"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <Button
+        android:id="@+id/Geographie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Géographie"
         android:layout_gravity="center"/>
-    </LinearLayout>
 
+    <Button
+        android:id="@+id/Histoire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Histoire"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/Science"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Science"
+        android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/Animaux"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Animaux"
+            android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/Francais"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Français"
+            android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/Mythologie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mythologie"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</ScrollView>
 
 </LinearLayout>

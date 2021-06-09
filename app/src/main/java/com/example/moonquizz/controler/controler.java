@@ -12,7 +12,23 @@ public final class controler {
     private static controler instance = null;
     private static DAOBase DAO;
     private static utilisateurs CurrentUser;
+    private static String CurrentTheme;
 
+    public static utilisateurs getCurrentUser() {
+        return CurrentUser;
+    }
+
+    public static void setCurrentUser(utilisateurs currentUser) {
+        CurrentUser = currentUser;
+    }
+
+    public static String getCurrentTheme() {
+        return CurrentTheme;
+    }
+
+    public static void setCurrentTheme(String currentTheme) {
+        CurrentTheme = currentTheme;
+    }
 
     private controler(){
         super();
@@ -28,16 +44,29 @@ public final class controler {
 
     public void ajoutUtilisateur(String prenom, String nom, String avatar){
         DAO.addUser(prenom, nom, avatar);
-        CurrentUser= DAO.getUser(prenom,nom);
+        setCurrentUser( DAO.getUser(prenom,nom));
     }
 
     public utilisateurs recupUser(String prenom, String nom){
+
         return DAO.getUser(prenom,nom);
+    }
+
+    public utilisateurs recupUserByID(int id){
+        return  DAO.getUserByID(id);
     }
 
     public ArrayList<utilisateurs> recupListeUser(){
         return DAO.selectUser();
     }
 
+    public void deleteUser(int id){
+        DAO.delUser(id);
+    }
 
+    public void changeAvatar(String avatar){
+        CurrentUser.setAvatar(avatar);
+        int id = CurrentUser.getId();
+        DAO.updateAvatar(id, avatar);
+    }
 }

@@ -7,14 +7,21 @@
     tools:context=".LoginPage"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:gravity="center" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/home"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/home_ico" />
+
+
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,15 +30,46 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
-    <LinearLayout
-        android:id="@+id/joueurs"
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"/>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/supprimer"
+        android:layout_below="@id/ll1">
+
+        <LinearLayout
+            android:id="@+id/joueurs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"></LinearLayout>
+    </ScrollView>
+        <Button
+            android:id="@+id/supprimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Supprimer un compte"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            />
+
+    </RelativeLayout>
 
 
-    </LinearLayout>
+
+
 
 
 </LinearLayout>

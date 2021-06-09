@@ -7,24 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.moonquizz.controler.controler;
 import com.example.moonquizz.model.utilisateurs;
-import android.widget.RelativeLayout.LayoutParams;
 
-import com.example.moonquizz.controler.controler;import java.util.ArrayList;
+import java.util.ArrayList;
 
-public class LoginPage extends AppCompatActivity {
+public class SupprimerPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.activity_supprimer_page);
         init();
         retour();
-        supprimer();
     }
 
-    private controler controler;
+    private com.example.moonquizz.controler.controler controler;
 
     private void init(){
         this.controler= controler.getInstance(this);
@@ -37,9 +38,9 @@ public class LoginPage extends AppCompatActivity {
             String nom = listeUser.get(i).getNom();
             String prenomNom=prenom+" "+nom;
 
-            //Création du bouton de connexion
+            //Création du bouton de suppression
             Button joueur= new Button(this);
-            joueur.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            joueur.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
             joueur.setText(prenomNom);
             int id = listeUser.get(i).getId();
             joueur.setTag(id);
@@ -48,7 +49,7 @@ public class LoginPage extends AppCompatActivity {
             //Ajout de la séparation
 
             TextView separation = new TextView(this);
-            separation.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+            separation.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
 
 
 
@@ -58,9 +59,8 @@ public class LoginPage extends AppCompatActivity {
             //Ajout de la fonction au bouton
             joueur.setOnClickListener(new  View.OnClickListener() {
                 public void onClick(View v) {
-                    controler.setCurrentUser(controler.recupUserByID(id));
-                    Intent intent = new Intent(LoginPage.this,ThemePage.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    controler.deleteUser(id);
+                    Intent intent = new Intent(SupprimerPage.this,StartPage.class);
                     startActivity(intent);
                 }
             });
@@ -70,19 +70,11 @@ public class LoginPage extends AppCompatActivity {
     private void retour(){
         findViewById(R.id.home).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this,StartPage.class);
+                Intent intent = new Intent(SupprimerPage.this,StartPage.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
     }
 
-    private void supprimer(){
-        findViewById(R.id.supprimer).setOnClickListener(new  View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this,SupprimerPage.class);
-                startActivity(intent);
-            }
-        });
-    }
 }

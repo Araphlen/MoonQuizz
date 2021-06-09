@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class DAOBase{
 
-        protected final static String NOM = "../data/mobile.db";
+        protected final static String NOM = "mobile.sqlite";
         private int version=1;
         private MySQLiteOpenHelper accesDB;
         protected SQLiteDatabase db = null;
@@ -83,7 +83,7 @@ public class DAOBase{
 
     public void addUser(String prenom,String nom,String avatar){
             db=accesDB.getWritableDatabase();
-        String req="insert into utilisateurs(prenom, nom, avatar) values ("+prenom+","+nom+","+avatar+")";
+        String req="insert into utilisateurs(prenom, nom, avatar) values ("+"\""+prenom+"\""+","+"\""+nom+"\""+","+"\""+avatar+"\""+")";
         db.execSQL(req);
     }
 
@@ -92,28 +92,56 @@ public class DAOBase{
         ArrayList tableau = new ArrayList();
         String req ="Select * from utilisateurs";
         Cursor curseur=db.rawQuery(req, null);
-        curseur.moveToFirst();
         for(curseur.moveToFirst(); !curseur.isAfterLast(); curseur.moveToNext()) {
-            String prenom=curseur.getString(1);
-            String nom=curseur.getString(2);
-            String avatar= curseur.getString(3);
-            int id=curseur.getInt(4);
+            String prenom=curseur.getString(0);
+            String nom=curseur.getString(1);
+            String avatar=curseur.getString(2);
+            int id=curseur.getInt(3);
             utilisateurs user=new utilisateurs(prenom, nom, avatar, id);
             tableau.add(user);
 
         }
+        curseur.close();
         return tableau;
     }
 
-    public utilisateurs getUser(String nom, String prenom){
+    public utilisateurs getUser(String prenom,String nom){
         db=accesDB.getReadableDatabase();
-        String req="Select * from utilisateurs where prenom="+prenom+" and nom="+nom;
+        String req="Select * from utilisateurs where prenom="+"\""+prenom+"\""+" and nom="+"\""+nom+"\""+";";
         Cursor curseur=db.rawQuery(req, null);
-        String avatar=curseur.getString(3);
-        int id = curseur.getInt(4);
+        curseur.moveToFirst();
+        String avatar=curseur.getString(2);
+        int id = curseur.getInt(3);
         utilisateurs user= new utilisateurs(prenom, nom, avatar, id);
+        curseur.close();
         return user;
     }
+
+    public utilisateurs getUserByID(int id){
+        db=accesDB.getReadableDatabase();
+        String req="Select * from utilisateurs where id="+id+";";
+        Cursor curseur=db.rawQuery(req, null);
+        curseur.moveToFirst();
+        String prenom= curseur.getString(0);
+        String nom=curseur.getString(1);
+        String avatar=curseur.getString(2);
+        utilisateurs user= new utilisateurs(prenom, nom, avatar, id);
+        curseur.close();
+        return user;
+    }
+
+    public void delUser(int id){
+        db=accesDB.getWritableDatabase();
+        String req="DELETE FROM utilisateurs WHERE id="+id+";";
+        db.execSQL(req);
+    }
+
+    public  void updateAvatar(int id , String avatar){
+        db=accesDB.getWritableDatabase();
+        String req="UPDATE utilisateurs SET avatar="+"\""+avatar+"\""+" WHERE id="+id+";";
+        db.execSQL(req);
+    }
+
 
     public boolean questValide(int idQuest, int idUser){
         db=accesDB.getReadableDatabase();
