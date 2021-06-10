@@ -11,22 +11,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MoonQuizz"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
         <Button
+            android:id="@+id/retour"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/home"
+
+            />
+
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <ImageButton
+            android:id="@+id/avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/avatar" />
@@ -36,18 +36,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/home"
-
-            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <TextView
+            android:id="@+id/theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/theme"/>
@@ -56,6 +51,7 @@
             android:layout_height="wrap_content"
             android:text="@string/deux_points"/>
         <TextView
+            android:id="@+id/lvl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ex_niveau"/>
@@ -68,37 +64,19 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/question"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="15dp"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="string/question"
-            android:layout_gravity="center"/>
-        <!-- on va  -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="15dp"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="string/question"
-            android:layout_gravity="center"/>
-    </LinearLayout>
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:id="@+id/question"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_gravity="center">
+
+       </LinearLayout>
+
+   </ScrollView>
 
 
 

@@ -60,7 +60,7 @@ public class SupprimerPage extends AppCompatActivity {
             joueur.setOnClickListener(new  View.OnClickListener() {
                 public void onClick(View v) {
                     controler.deleteUser(id);
-                    Intent intent = new Intent(SupprimerPage.this,StartPage.class);
+                    Intent intent = new Intent(SupprimerPage.this,LoginPage.class);
                     startActivity(intent);
                 }
             });

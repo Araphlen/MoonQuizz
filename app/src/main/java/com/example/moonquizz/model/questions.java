@@ -4,6 +4,7 @@ public class questions {
     private String matiere;
     private int niveau;
     private int num;
+    private String question;
     private String reponse;
     private String rep1;
     private String rep2;
@@ -11,10 +12,11 @@ public class questions {
     private  int id;
 
 
-    public questions(String matiere, int niveau, int num, String reponse, String rep1, String rep2, String rep3, int id) {
+    public questions(String matiere, int niveau, int num,String question, String reponse, String rep1, String rep2, String rep3, int id) {
         this.matiere = matiere;
         this.niveau = niveau;
         this.num = num;
+        this.question=question;
         this.reponse = reponse;
         this.rep1 = rep1;
         this.rep2 = rep2;
@@ -22,10 +24,11 @@ public class questions {
         this.id=id;
     }
 
-    public questions(String matiere, int niveau, int num, String reponse, String rep1,int id) {
+    public questions(String matiere, int niveau, int num,String question, String reponse, String rep1,int id) {
         this.matiere = matiere;
         this.niveau = niveau;
         this.num = num;
+        this.question=question;
         this.reponse = reponse;
         this.rep1 = rep1;
         this.id=id;
@@ -93,5 +96,13 @@ public class questions {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
     }
 }

@@ -45,6 +45,15 @@ public class ChangeAvatar extends AppCompatActivity {
                     controler.changeAvatar(avatar);
                     if(page.equals("theme")){
                         Intent intent = new Intent(ChangeAvatar.this,ThemePage.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }else if(page.equals("niveau")){
+                        Intent intent = new Intent(ChangeAvatar.this,Niveau.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    } else{
+                        Intent intent = new Intent(ChangeAvatar.this,ListeQuestion.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 }

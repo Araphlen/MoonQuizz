@@ -23,55 +23,69 @@ public class DAOBase{
 
     public questions selectQuestion(int id){
             db=accesDB.getReadableDatabase();
-        String req ="Select * from questions where id="+id;
+        String req ="Select * from questions where id="+id+";";
         Cursor curseur=db.rawQuery(req, null);
         curseur.moveToFirst();
-        String matiere= curseur.getString(1);
-        int niveau = curseur.getInt(2);
-        int num= curseur.getInt(3);
+        String matiere= curseur.getString(0);
+        int niveau = curseur.getInt(1);
+        int num= curseur.getInt(2);
+        String question=curseur.getString(3);
         String reponse= curseur.getString(4);
         String rep1= curseur.getString(5);
         if(niveau==2){
             String rep2= curseur.getString(6);
             String rep3= curseur.getString(7);
             curseur.close();
-            questions quest= new questions(matiere,niveau, num,reponse,rep1,rep2,rep3,id);
+            questions quest= new questions(matiere,niveau,num,question, reponse,rep1,rep2,rep3,id);
             return quest;
         } else{
             curseur.close();
-            questions quest= new questions(matiere,niveau, num,reponse,rep1,id);
+            questions quest= new questions(matiere,niveau,num,question, reponse,rep1,id);
             return quest;
         }
     }
 
 
-    public String selectReponse(int id){
+    public ArrayList<String> selectReponse(int id){
+            ArrayList<String > listRep= new ArrayList<String>();
             db=accesDB.getReadableDatabase();
-        String req ="Select * from questions where id="+id;
+        String req ="Select * from questions where id="+id+";";
         Cursor curseur=db.rawQuery(req, null);
         curseur.moveToFirst();
+        int lvl= curseur.getInt(1);
         String reponse= curseur.getString(4);
-        return  reponse;
+        String rep1=curseur.getString(5);
+        listRep.add(reponse);
+        listRep.add(rep1);
+        if(lvl==2){
+            String rep2=curseur.getString(6);
+            String rep3=curseur.getString(7);
+            listRep.add(rep2);
+            listRep.add(rep3);
+        }
+
+        return  listRep;
     }
 
-    public ArrayList selectQuestTheme(String matiere, int niveau){
+    public ArrayList<questions> selectQuestTheme(String theme, int niveau){
         db=accesDB.getReadableDatabase();
-        ArrayList tableau = new ArrayList();
-        String req ="Select * from questions where matiere="+matiere+" and niveau="+niveau;
+        ArrayList<questions> tableau = new ArrayList();
+        String req ="Select * from questions where matiere="+"\""+theme+"\""+" and niveau="+niveau+";";
         Cursor curseur=db.rawQuery(req, null);
         for(curseur.moveToFirst(); !curseur.isAfterLast(); curseur.moveToNext()) {
-            int num = curseur.getInt(3);
+            int num = curseur.getInt(2);
+            String question= curseur.getString(3);
             String reponse = curseur.getString(4);
             String rep1 = curseur.getString(5);
             int id = curseur.getInt(8);
             if (niveau == 2) {
                 String rep2 = curseur.getString(6);
-                String rep3 = curseur.getString(7);
-                questions quest = new questions(matiere, niveau, num, reponse, rep1, rep2, rep3, id);
+                String rep3 = curseur.getString(7   );
+                questions quest = new questions(theme, niveau, num,question, reponse, rep1, rep2, rep3, id);
                 tableau.add(quest);
 
             } else {
-                questions quest = new questions(matiere, niveau, num, reponse, rep1, id);
+                questions quest = new questions(theme, niveau, num,question, reponse, rep1, id);
                 tableau.add(quest);
             }
         } curseur.close();
@@ -145,9 +159,9 @@ public class DAOBase{
 
     public boolean questValide(int idQuest, int idUser){
         db=accesDB.getReadableDatabase();
-        String req="Select * from questionUtilisateurValidee where idQuestion="+idQuest+" and idUtilisateur="+idUser;
+        String req="Select * from questionUtilisateurValidee where idQuestion="+idQuest+" and idUtilisateur="+idUser+";";
         Cursor curseur=db.rawQuery(req, null);
-        curseur.moveToLast();
+        curseur.moveToFirst();
         if(curseur.isAfterLast()){
             return false;
         }else {
@@ -158,7 +172,12 @@ public class DAOBase{
     public void valideQuest(int idQuest, int idUser){
         db=accesDB.getWritableDatabase();
         String req="insert into questionUtilisateurValidee(idQuestion,idUtilisateur) values ("+idQuest+","+idUser+")";
-        db.execSQL(req);
+        try{
+            db.execSQL(req);
+        } catch (Exception e){
+
+        }
+
     }
 
     }

@@ -3,6 +3,7 @@ package com.example.moonquizz.controler;
 import android.service.controls.Control;
 import android.content.Context;
 import com.example.moonquizz.model.DAOBase;
+import com.example.moonquizz.model.questions;
 import com.example.moonquizz.model.utilisateurs;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ public final class controler {
     private static DAOBase DAO;
     private static utilisateurs CurrentUser;
     private static String CurrentTheme;
+    private static int CurrentLvl;
+    private static  questions CurrentQuest;
 
     public static utilisateurs getCurrentUser() {
         return CurrentUser;
@@ -28,6 +31,22 @@ public final class controler {
 
     public static void setCurrentTheme(String currentTheme) {
         CurrentTheme = currentTheme;
+    }
+
+    public static int getCurrentLvl() {
+        return CurrentLvl;
+    }
+
+    public static void setCurrentLvl(int currentLvl) {
+        CurrentLvl = currentLvl;
+    }
+
+    public static questions getCurrentQuest() {
+        return CurrentQuest;
+    }
+
+    public static void setCurrentQuest(questions currentQuest) {
+        CurrentQuest = currentQuest;
     }
 
     private controler(){
@@ -68,5 +87,22 @@ public final class controler {
         CurrentUser.setAvatar(avatar);
         int id = CurrentUser.getId();
         DAO.updateAvatar(id, avatar);
+    }
+
+
+    public ArrayList<questions> recupListeQuest(){
+        return  DAO.selectQuestTheme(CurrentTheme,CurrentLvl);
+    }
+
+    public ArrayList<String> recupListeRep(){
+        return DAO.selectReponse(CurrentQuest.getId());
+    }
+
+    public boolean verifQuest(int idQuest, int idUser){
+        return  DAO.questValide(idQuest,idUser);
+    }
+
+    public void valideQuest(){
+        DAO.valideQuest(CurrentQuest.getId(),CurrentQuest.getId());
     }
 }

@@ -21,10 +21,6 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(req1);
         db.execSQL(req2);
         db.execSQL(req3);
-        db.execSQL("INSERT INTO utilisateurs(prenom,nom) VALUES(\"Jean\",\"Michel\");\n");
-        db.execSQL("INSERT INTO utilisateurs(prenom,nom) VALUES(\"Pierre\",\"Paul\");\n");
-        db.execSQL("INSERT INTO utilisateurs(prenom,nom) VALUES(\"Eliot\",\"tulli\");");
-        db.execSQL("INSERT INTO utilisateurs(prenom,nom) VALUES(\"Mickael\",\"Martin\");");
         db.execSQL("INSERT INTO questions(matiere,niveau,num,question,reponse,rep1)  VALUES(\"Geographie\",1,1, \"Dans quel département se trouve la grotte de Lascaux ?\", \"Dordogne\", \"Vaucluse\" );");
         db.execSQL("INSERT INTO questions(matiere,niveau,num,question,reponse,rep1)  VALUES(\"Geographie\",1,2, \"Dans quel pays aurez-vous le plus de chance de visiter Lyon ?\", \"France\", \"Espagne\" );");
         db.execSQL("INSERT INTO questions(matiere,niveau,num,question,reponse,rep1)  VALUES(\"Geographie\",1,3, \"Combien y a-t-il de couleurs sur le drapeau canadien ?\", \"2\", \"0\");");
