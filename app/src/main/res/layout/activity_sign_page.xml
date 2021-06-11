@@ -30,20 +30,13 @@
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nom"
-            android:layout_gravity="center"
 
-
-            />
 
         <EditText
             android:id="@+id/nom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:hint="Entrez un nom de famille"
             android:singleLine="true"/>
 
     </LinearLayout>
@@ -58,20 +51,14 @@
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prenom"
-            android:layout_gravity="center"
 
-            />
 
         <EditText
             android:id="@+id/prenom"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:layout_weight="1"/>
+            android:hint="Entrez un prenom"/>
 
     </LinearLayout>
 

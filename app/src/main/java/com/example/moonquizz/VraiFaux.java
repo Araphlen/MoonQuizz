@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.moonquizz.controler.controler;
+import com.example.moonquizz.controler.controller;
 import com.example.moonquizz.model.questions;
 
 import java.util.ArrayList;
@@ -25,11 +24,11 @@ public class VraiFaux extends AppCompatActivity {
     }
 
 
-    private controler controler;
+    private controller controller;
 
     private void init(){
-        this.controler= controler.getInstance(this);
-        questions quest= controler.getCurrentQuest();
+        this.controller = controller.getInstance(this);
+        questions quest= controller.getCurrentQuest();
         String enonce = quest.getQuestion();
 
         TextView theme=findViewById(R.id.question);
@@ -47,7 +46,7 @@ public class VraiFaux extends AppCompatActivity {
         idButton[1]=R.id.rep1;
         Random random= new Random() ;
         ArrayList<String> listRep;
-        listRep=controler.recupListeRep();
+        listRep= controller.recupListeRep();
         int size=listRep.size();
         for(int i=0; i<size; i++){
             if(n==0){
@@ -61,11 +60,14 @@ public class VraiFaux extends AppCompatActivity {
            Button reponse=findViewById(idButton[i]);
            reponse.setText(rep);
 
-           if(rep.equals(controler.getCurrentQuest().getReponse())){
+           if(rep.equals(controller.getCurrentQuest().getReponse())){
                reponse.setOnClickListener(new  View.OnClickListener() {
                    public void onClick(View v) {
-                        controler.valideQuest();
+                        controller.valideQuest();
                        Intent intent = new Intent(VraiFaux.this,Gagne.class);
+                       String page = "VF";
+                       intent.putExtra("PAGE", page);
+                       finish();
                        startActivity(intent);
                    }
                });
@@ -75,6 +77,7 @@ public class VraiFaux extends AppCompatActivity {
                        Intent intent = new Intent(VraiFaux.this,Perdu.class);
                        String page = "VF";
                        intent.putExtra("PAGE", page);
+                       finish();
                        startActivity(intent);
                    }
                });

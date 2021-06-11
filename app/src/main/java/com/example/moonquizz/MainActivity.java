@@ -6,18 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.moonquizz.controler.controler;
+import com.example.moonquizz.controler.controller;
 
 public class MainActivity extends AppCompatActivity {
 
-    private controler controler;
+    private controller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         demarrer();
-        this.controler= controler.getInstance(this);
+        this.controller = controller.getInstance(this);
     }
 
     private void demarrer(){

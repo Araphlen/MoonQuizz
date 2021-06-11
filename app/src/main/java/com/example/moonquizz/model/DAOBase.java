@@ -21,12 +21,24 @@ public class DAOBase{
         }
 
 
+    public boolean nextQuestion(String theme, int niveau, int num){
+            int nump=num+1;
+        String req ="Select * from questions where matiere="+"\""+theme+"\""+" and niveau="+niveau+" and num="+nump+";";
+        Cursor curseur=db.rawQuery(req, null);
+        curseur.moveToFirst();
+        curseur.moveToLast();
+        if(curseur.isAfterLast()){
+            return false;
+        }else {
+            return true;
+        }
+    }
 
 
-
-    public questions selectQuestion(String theme, int niveau, int num){
+    public questions selectNextQuestion(String theme, int niveau, int num){
             db=accesDB.getReadableDatabase();
-        String req ="Select * from questions where matiere="+"\""+theme+"\""+" and niveau="+niveau+" and num="+num+";";
+            int nump=num+1;
+        String req ="Select * from questions where matiere="+"\""+theme+"\""+" and niveau="+niveau+" and num="+nump+";";
         Cursor curseur=db.rawQuery(req, null);
         curseur.moveToFirst();
 

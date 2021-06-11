@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.moonquizz.controler.controler;
+import com.example.moonquizz.controler.controller;
 
 public class Niveau extends AppCompatActivity {
 
@@ -20,12 +20,12 @@ public class Niveau extends AppCompatActivity {
         init();
     }
 
-    private controler controler;
+    private controller controller;
 
     private void init(){
-        this.controler= controler.getInstance(this);
+        this.controller = controller.getInstance(this);
         TextView theme=findViewById(R.id.theme);
-        theme.setText(controler.getCurrentTheme());
+        theme.setText(controller.getCurrentTheme());
         avatar();
         retour();
         niveau1();
@@ -34,7 +34,7 @@ public class Niveau extends AppCompatActivity {
 
 
     private void avatar() {
-        String name = controler.getCurrentUser().getAvatar();
+        String name = controller.getCurrentUser().getAvatar();
         int id = getResources().getIdentifier(name, "drawable", Niveau.this.getPackageName());
         Drawable drawable = getResources().getDrawable(id);
         ImageButton button = findViewById(R.id.avatar);
@@ -63,7 +63,7 @@ public class Niveau extends AppCompatActivity {
     private void niveau1(){
         findViewById(R.id.lvl1).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                controler.setCurrentLvl(1);
+                controller.setCurrentLvl(1);
                 Intent intent = new Intent(Niveau.this,ListeQuestion.class);
                 startActivity(intent);
             }
@@ -73,7 +73,7 @@ public class Niveau extends AppCompatActivity {
     private void niveau2(){
         findViewById(R.id.lvl2).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                controler.setCurrentLvl(2);
+                controller.setCurrentLvl(2);
                 Intent intent = new Intent(Niveau.this,ListeQuestion.class);
                 startActivity(intent);
             }

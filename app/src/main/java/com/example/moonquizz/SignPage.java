@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.moonquizz.controler.controler;
+import com.example.moonquizz.controler.controller;
 
 public class SignPage extends AppCompatActivity {
 
@@ -17,12 +17,12 @@ public class SignPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_page);
-        this.controler= controler.getInstance(this);
+        this.controller = controller.getInstance(this);
         inscrire();
         retour();
     }
 
-    private controler controler;
+    private controller controller;
 
 
     private void inscrire(){
@@ -49,7 +49,7 @@ public class SignPage extends AppCompatActivity {
     }
 
     private void ajout(String prenom, String nom){
-        this.controler.ajoutUtilisateur(prenom, nom, "avatar");
+        this.controller.ajoutUtilisateur(prenom, nom, "avatar");
 
     }
 

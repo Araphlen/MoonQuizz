@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.moonquizz.controler.controler;
+import com.example.moonquizz.controler.controller;
 import com.example.moonquizz.model.questions;
 
 import java.util.ArrayList;
@@ -23,11 +23,11 @@ public class QCM extends AppCompatActivity {
         init();
     }
 
-    private com.example.moonquizz.controler.controler controler;
+    private controller controller;
 
     private void init(){
-        this.controler= controler.getInstance(this);
-        questions quest= controler.getCurrentQuest();
+        this.controller = controller.getInstance(this);
+        questions quest= controller.getCurrentQuest();
         String enonce = quest.getQuestion();
 
         TextView theme=findViewById(R.id.question);
@@ -49,7 +49,7 @@ public class QCM extends AppCompatActivity {
         int id;
         Random random= new Random() ;
         ArrayList<String> listRep;
-        listRep=controler.recupListeRep();
+        listRep= controller.recupListeRep();
         int size=listRep.size();
         for(int i=0; i<size; i++){
             if(n==0){
@@ -63,11 +63,13 @@ public class QCM extends AppCompatActivity {
             Button reponse=findViewById(idButton[i]);
             reponse.setText(rep);
 
-            if(rep.equals(controler.getCurrentQuest().getReponse())){
+            if(rep.equals(controller.getCurrentQuest().getReponse())){
                 reponse.setOnClickListener(new  View.OnClickListener() {
                     public void onClick(View v) {
-                        controler.valideQuest();
+                        controller.valideQuest();
                         Intent intent = new Intent(QCM.this,Gagne.class);
+                        String page = "QCM";
+                        intent.putExtra("PAGE", page);
                         startActivity(intent);
                     }
                 });

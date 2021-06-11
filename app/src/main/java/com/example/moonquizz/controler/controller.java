@@ -1,6 +1,5 @@
 package com.example.moonquizz.controler;
 
-import android.service.controls.Control;
 import android.content.Context;
 import com.example.moonquizz.model.DAOBase;
 import com.example.moonquizz.model.operation;
@@ -10,18 +9,19 @@ import com.example.moonquizz.model.utilisateurs;
 import java.util.ArrayList;
 import java.util.Random;
 
-public final class controler {
+public final class controller {
 
-    private static controler instance = null;
+    private static controller instance = null;
     private static DAOBase DAO;
     private static utilisateurs CurrentUser;
     private static String CurrentTheme;
     private static int CurrentLvl;
     private static  questions CurrentQuest;
     private static ArrayList<operation> tableOperation;
-    private static ArrayList<float[]> tableReponse;
+    private static ArrayList<Float> tableReponse;
 
 
+    //Liste des getter et setter
     public static utilisateurs getCurrentUser() {
         return CurrentUser;
     }
@@ -59,69 +59,99 @@ public final class controler {
     }
 
     public static void setOperation(ArrayList<operation> operation) {
-        controler.tableOperation = operation;
+        controller.tableOperation = operation;
     }
 
-    public static ArrayList<float[]> getTableReponse() {
+    public static ArrayList<Float> getTableReponse() {
         return tableReponse;
     }
 
-    public static void setTableReponse(ArrayList<float[]> tableReponse) {
-        controler.tableReponse = tableReponse;
+    public static void setTableReponse(ArrayList<Float> tableReponse) {
+        controller.tableReponse = tableReponse;
     }
 
-    private controler(){
+    //Le constructeur
+    private controller(){
         super();
     }
 
-    public static  final controler getInstance(Context context){
-        if(controler.instance == null){
-            controler.instance= new controler();
+    //Récupération du controler
+    public static  final controller getInstance(Context context){
+        if(controller.instance == null){
+            controller.instance= new controller();
             DAO= new DAOBase(context);
         }
-        return controler.instance;
+        return controller.instance;
     }
 
+
+    //Fonctions liées aux maths
+
+
+    //Génère un liste de 10 questions alétoire, en fonction d'un opérateur
     public void genOp(String op){
         int operand1;
         int operand2;
         operation operation;
         Random random= new Random() ;
+        tableOperation= new ArrayList<>();
+        tableReponse=new ArrayList<>();
         for(int i=0; i<10; i++){
-            operand1=random.nextInt(99)+1;
-            operand2=random.nextInt(99)+1;
+            operand1=random.nextInt(9)+1;
+            operand2=random.nextInt(9)+1;
             operation= new operation(operand1,operand2, op);
             tableOperation.add(operation);
 
         }
     }
 
+    //Compare le réultat de l'utilisateur et le résultat de l'opération
+    public boolean verifResult(int num){
+        return tableOperation.get(num).getResult()==tableReponse.get(num);
+    }
+
+    //Renvoie le nombre de bonne réponse
+    public int nbBonneRep(){
+        int res=0;
+        for(int i=0;i<10;i++ ){
+            if(verifResult(i)){
+                res++;
+            }
+        }
+        return  res;
+    }
+
+    //Change la valeur de la réponse utilisateur pour la question num
+    public  void changeRep(int num,float rep){
+        tableReponse.set(num, rep);
+    }
 
 
+    //Fonctions liées aux utilisateurs
 
-
+    //Ajoute un utilisateur à la base
     public void ajoutUtilisateur(String prenom, String nom, String avatar){
         DAO.addUser(prenom, nom, avatar);
         setCurrentUser( DAO.getUser(prenom,nom));
     }
 
-    public utilisateurs recupUser(String prenom, String nom){
 
-        return DAO.getUser(prenom,nom);
-    }
-
+    //Récupère un utlisateur en fonction de l'id
     public utilisateurs recupUserByID(int id){
         return  DAO.getUserByID(id);
     }
 
+    //Récupère la liste des utilisateur
     public ArrayList<utilisateurs> recupListeUser(){
         return DAO.selectUser();
     }
 
+    //Supprimer un utilisateur
     public void deleteUser(int id){
         DAO.delUser(id);
     }
 
+    //Change l'avatar d'un utilisateur
     public void changeAvatar(String avatar){
         CurrentUser.setAvatar(avatar);
         int id = CurrentUser.getId();
@@ -129,18 +159,36 @@ public final class controler {
     }
 
 
+    //Fonctions liées aux questions
+
+    //Récupère la liste des question liées au thème et au niveau choisi par l'utilisateur
     public ArrayList<questions> recupListeQuest(){
         return  DAO.selectQuestTheme(CurrentTheme,CurrentLvl);
     }
 
+    //Recupère la liste des différentes réponse de la question selectionnée
     public ArrayList<String> recupListeRep(){
         return DAO.selectReponse(CurrentQuest.getId());
     }
 
+    //Vérifie s'il y a une question après
+    public boolean nextQuestion(){
+        return  DAO.nextQuestion(CurrentTheme,CurrentLvl,CurrentQuest.getNum());
+    }
+
+    //Séletionne la question suivante
+    public questions selectNextQuestion(String theme, int level, int num){
+        return DAO.selectNextQuestion(theme, level, num);
+    }
+
+    //Fonctions liées aux utilisateurs et question
+
+    //Vérifie que la question est bien validée
     public boolean verifQuest(int idQuest, int idUser){
         return  DAO.questValide(idQuest,idUser);
     }
 
+    //Valide la question
     public void valideQuest(){
         DAO.valideQuest(CurrentQuest.getId(),CurrentUser.getId());
     }

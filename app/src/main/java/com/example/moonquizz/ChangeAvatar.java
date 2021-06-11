@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.moonquizz.controler.controler;
+import com.example.moonquizz.controler.controller;
 
 public class ChangeAvatar extends AppCompatActivity {
 
@@ -22,10 +20,10 @@ public class ChangeAvatar extends AppCompatActivity {
         init();
     }
 
-    private controler controler;
+    private controller controller;
 
     private void init(){
-        this.controler= controler.getInstance(this);
+        this.controller = controller.getInstance(this);
         retour();
         Bundle extras = getIntent().getExtras();
         String page= extras.getString("PAGE");
@@ -43,7 +41,7 @@ public class ChangeAvatar extends AppCompatActivity {
             button.setImageDrawable(drawable);
             button.setOnClickListener(new  View.OnClickListener() {
                 public void onClick(View v) {
-                    controler.changeAvatar(avatar);
+                    controller.changeAvatar(avatar);
                     if(page.equals("theme")){
                         Intent intent = new Intent(ChangeAvatar.this,ThemePage.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -52,8 +50,13 @@ public class ChangeAvatar extends AppCompatActivity {
                         Intent intent = new Intent(ChangeAvatar.this,Niveau.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-                    } else{
+                    } else if(page.equals("quest")){
                         Intent intent = new Intent(ChangeAvatar.this,ListeQuestion.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(ChangeAvatar.this,Mathematique.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }

@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.moonquizz.controler.controler;
+import com.example.moonquizz.controler.controller;
 import com.example.moonquizz.model.utilisateurs;
 
 import java.util.ArrayList;
@@ -25,12 +25,12 @@ public class SupprimerPage extends AppCompatActivity {
         retour();
     }
 
-    private com.example.moonquizz.controler.controler controler;
+    private controller controller;
 
     private void init(){
-        this.controler= controler.getInstance(this);
+        this.controller = controller.getInstance(this);
         ArrayList<utilisateurs> listeUser ;
-        listeUser= this.controler.recupListeUser();
+        listeUser= this.controller.recupListeUser();
         LinearLayout layout= findViewById(R.id.joueurs);
         for (int i=0; i<listeUser.size(); i++){
             //Récupération nom prénom
@@ -59,7 +59,7 @@ public class SupprimerPage extends AppCompatActivity {
             //Ajout de la fonction au bouton
             joueur.setOnClickListener(new  View.OnClickListener() {
                 public void onClick(View v) {
-                    controler.deleteUser(id);
+                    controller.deleteUser(id);
                     Intent intent = new Intent(SupprimerPage.this,LoginPage.class);
                     startActivity(intent);
                 }

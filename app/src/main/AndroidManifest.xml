@@ -9,13 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoonQuizz">
-        <activity android:name=".OperationActivity"></activity>
+        <activity android:name=".ResultatActivity"></activity>
+        <activity android:name=".OperationActivity" />
         <activity android:name=".Mathematique" />
         <activity android:name=".ChangeAvatar" />
         <activity android:name=".SupprimerPage" />
         <activity android:name=".Perdu" />
         <activity android:name=".Gagne" />
-        <activity android:name=".QuestionClassic" />
         <activity android:name=".QCM" />
         <activity android:name=".VraiFaux" />
         <activity android:name=".ListeQuestion" />

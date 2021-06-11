@@ -8,9 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.moonquizz.controler.controler;
-
-import java.lang.reflect.Field;
+import com.example.moonquizz.controler.controller;
 
 public class ThemePage extends AppCompatActivity {
 
@@ -21,10 +19,10 @@ public class ThemePage extends AppCompatActivity {
         init();
     }
 
-    private controler controler;
+    private controller controller;
 
     private void init(){
-        this.controler= controler.getInstance(this);
+        this.controller = controller.getInstance(this);
         retour();
         themeGeo();
         themeHist();
@@ -32,6 +30,7 @@ public class ThemePage extends AppCompatActivity {
         themeFra();
         themeMyt();
         themeSci();
+        themeMath();
         avatar();
     }
 
@@ -47,7 +46,7 @@ public class ThemePage extends AppCompatActivity {
     }
 
     private void avatar()    {
-            String name= controler.getCurrentUser().getAvatar();
+            String name= controller.getCurrentUser().getAvatar();
             int id = getResources().getIdentifier(name, "drawable", ThemePage.this.getPackageName());
             Drawable drawable = getResources().getDrawable(id);
         ImageButton button=findViewById(R.id.avatar);
@@ -66,7 +65,7 @@ public class ThemePage extends AppCompatActivity {
     private void themeGeo(){
         findViewById(R.id.Geographie).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                controler.setCurrentTheme("Geographie");
+                controller.setCurrentTheme("Geographie");
                 Intent intent = new Intent(ThemePage.this,Niveau.class);
                 startActivity(intent);
             }
@@ -75,7 +74,7 @@ public class ThemePage extends AppCompatActivity {
     private void themeHist(){
         findViewById(R.id.Histoire).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                controler.setCurrentTheme("Histoire");
+                controller.setCurrentTheme("Histoire");
                 Intent intent = new Intent(ThemePage.this,Niveau.class);
                 startActivity(intent);
             }
@@ -84,7 +83,7 @@ public class ThemePage extends AppCompatActivity {
     private void themeSci(){
         findViewById(R.id.Science).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                controler.setCurrentTheme("Science");
+                controller.setCurrentTheme("Science");
                 Intent intent = new Intent(ThemePage.this,Niveau.class);
                 startActivity(intent);
             }
@@ -93,7 +92,7 @@ public class ThemePage extends AppCompatActivity {
     private void themeAni(){
         findViewById(R.id.Animaux).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                controler.setCurrentTheme("Animaux");
+                controller.setCurrentTheme("Animaux");
                 Intent intent = new Intent(ThemePage.this,Niveau.class);
                 startActivity(intent);
             }
@@ -102,7 +101,7 @@ public class ThemePage extends AppCompatActivity {
     private void themeFra(){
         findViewById(R.id.Francais).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                controler.setCurrentTheme("Francais");
+                controller.setCurrentTheme("Francais");
                 Intent intent = new Intent(ThemePage.this,Niveau.class);
                 startActivity(intent);
             }
@@ -111,8 +110,17 @@ public class ThemePage extends AppCompatActivity {
     private void themeMyt(){
         findViewById(R.id.Mythologie).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                controler.setCurrentTheme("Mythologie");
+                controller.setCurrentTheme("Mythologie");
                 Intent intent = new Intent(ThemePage.this,Niveau.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void themeMath(){
+        findViewById(R.id.Mathematique).setOnClickListener(new  View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ThemePage.this,Mathematique.class);
                 startActivity(intent);
             }
         });

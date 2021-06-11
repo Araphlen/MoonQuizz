@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.moonquizz.controler.controler;
+import com.example.moonquizz.controler.controller;
 import com.example.moonquizz.model.questions;
 
 import java.util.ArrayList;
@@ -28,15 +28,15 @@ public class ListeQuestion extends AppCompatActivity {
         init();
     }
 
-    private controler controler;
+    private controller controller;
 
     private void init(){
-        this.controler= controler.getInstance(this);
+        this.controller = controller.getInstance(this);
         retour();
         avatar();
 
-        String currentTheme=controler.getCurrentTheme();
-        int lvl=controler.getCurrentLvl();
+        String currentTheme= controller.getCurrentTheme();
+        int lvl= controller.getCurrentLvl();
         TextView theme=findViewById(R.id.theme);
         theme.setText(currentTheme);
 
@@ -44,7 +44,7 @@ public class ListeQuestion extends AppCompatActivity {
         niveau.setText("Niveau "+lvl);
 
         ArrayList<questions> listeQuest;
-        listeQuest = this.controler.recupListeQuest();
+        listeQuest = this.controller.recupListeQuest();
         LinearLayout layout= findViewById(R.id.question);
 
 
@@ -73,7 +73,7 @@ public class ListeQuestion extends AppCompatActivity {
             if(valide){
                 Butquestion.setOnClickListener(new  View.OnClickListener() {
                     public void onClick(View v) {
-                        controler.setCurrentQuest(quest);
+                        controller.setCurrentQuest(quest);
                         if(quest.getNiveau()==1){
                             Intent intent = new Intent(ListeQuestion.this,VraiFaux.class);
                             startActivity(intent);
@@ -85,7 +85,7 @@ public class ListeQuestion extends AppCompatActivity {
                 });
 
                 Butquestion.setBackgroundColor(Color.parseColor("#738b28"));
-                if(!controler.verifQuest(quest.getId(),controler.getCurrentUser().getId())){
+                if(!controller.verifQuest(quest.getId(), controller.getCurrentUser().getId())){
                     valide=false;
                     Butquestion.setBackgroundColor(Color.parseColor("#0000FF"));
                 }
@@ -116,7 +116,7 @@ public class ListeQuestion extends AppCompatActivity {
     }
 
     private void avatar() {
-        String name = controler.getCurrentUser().getAvatar();
+        String name = controller.getCurrentUser().getAvatar();
         int id = getResources().getIdentifier(name, "drawable", ListeQuestion.this.getPackageName());
         Drawable drawable = getResources().getDrawable(id);
         ImageButton button = findViewById(R.id.avatar);

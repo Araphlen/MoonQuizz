@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.moonquizz.controler.controler;
+import com.example.moonquizz.controler.controller;
 
 public class Perdu extends AppCompatActivity {
 
@@ -17,10 +17,10 @@ public class Perdu extends AppCompatActivity {
         init();
     }
 
-    private controler controler;
+    private controller controller;
 
     public void init(){
-        this.controler=this.controler.getInstance(this);
+        this.controller =this.controller.getInstance(this);
         retour();
         retry();
     }

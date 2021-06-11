@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.moonquizz.model.utilisateurs;
 import android.widget.RelativeLayout.LayoutParams;
 
-import com.example.moonquizz.controler.controler;import java.util.ArrayList;
+import com.example.moonquizz.controler.controller;import java.util.ArrayList;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -24,12 +24,12 @@ public class LoginPage extends AppCompatActivity {
         supprimer();
     }
 
-    private controler controler;
+    private controller controller;
 
     private void init(){
-        this.controler= controler.getInstance(this);
+        this.controller = controller.getInstance(this);
         ArrayList<utilisateurs> listeUser ;
-        listeUser= this.controler.recupListeUser();
+        listeUser= this.controller.recupListeUser();
         LinearLayout layout= findViewById(R.id.joueurs);
         for (int i=0; i<listeUser.size(); i++){
             //Récupération nom prénom
@@ -58,7 +58,7 @@ public class LoginPage extends AppCompatActivity {
             //Ajout de la fonction au bouton
             joueur.setOnClickListener(new  View.OnClickListener() {
                 public void onClick(View v) {
-                    controler.setCurrentUser(controler.recupUserByID(id));
+                    controller.setCurrentUser(controller.recupUserByID(id));
                     Intent intent = new Intent(LoginPage.this,ThemePage.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
