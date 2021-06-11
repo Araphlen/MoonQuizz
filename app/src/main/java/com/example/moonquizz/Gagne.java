@@ -32,4 +32,15 @@ public class Gagne extends AppCompatActivity {
             }
         });
     }
+
+    private void nextQuest(){
+
+        findViewById(R.id.suiv).setOnClickListener(new  View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Gagne.this,ListeQuestion.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+    }
 }

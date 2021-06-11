@@ -38,7 +38,8 @@ public class VraiFaux extends AppCompatActivity {
     }
 
     private void genRep(){
-        int n=1;
+        int n=2;
+
         int id;
         int[] idButton = new int[2];
 
@@ -47,7 +48,8 @@ public class VraiFaux extends AppCompatActivity {
         Random random= new Random() ;
         ArrayList<String> listRep;
         listRep=controler.recupListeRep();
-        for(int i=0; i<listRep.size(); i++){
+        int size=listRep.size();
+        for(int i=0; i<size; i++){
             if(n==0){
                 id=0;
             } else {
@@ -71,6 +73,8 @@ public class VraiFaux extends AppCompatActivity {
                reponse.setOnClickListener(new  View.OnClickListener() {
                    public void onClick(View v) {
                        Intent intent = new Intent(VraiFaux.this,Perdu.class);
+                       String page = "VF";
+                       intent.putExtra("PAGE", page);
                        startActivity(intent);
                    }
                });

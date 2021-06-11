@@ -35,11 +35,20 @@ public class Perdu extends AppCompatActivity {
         });
     }
     private void retry(){
+        Bundle extras = getIntent().getExtras();
+        String page= extras.getString("PAGE");
         findViewById(R.id.retry).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Perdu.this,VraiFaux.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                if(page.equals("VF")){
+                    Intent intent = new Intent(Perdu.this,VraiFaux.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else{
+                    Intent intent = new Intent(Perdu.this,QCM.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+
             }
         });
     }

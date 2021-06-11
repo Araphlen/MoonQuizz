@@ -21,26 +21,28 @@ public class DAOBase{
         }
 
 
-    public questions selectQuestion(int id){
+
+
+
+    public questions selectQuestion(String theme, int niveau, int num){
             db=accesDB.getReadableDatabase();
-        String req ="Select * from questions where id="+id+";";
+        String req ="Select * from questions where matiere="+"\""+theme+"\""+" and niveau="+niveau+" and num="+num+";";
         Cursor curseur=db.rawQuery(req, null);
         curseur.moveToFirst();
-        String matiere= curseur.getString(0);
-        int niveau = curseur.getInt(1);
-        int num= curseur.getInt(2);
+
         String question=curseur.getString(3);
         String reponse= curseur.getString(4);
         String rep1= curseur.getString(5);
+        int id= curseur.getInt(8);
         if(niveau==2){
             String rep2= curseur.getString(6);
             String rep3= curseur.getString(7);
             curseur.close();
-            questions quest= new questions(matiere,niveau,num,question, reponse,rep1,rep2,rep3,id);
+            questions quest= new questions(theme,niveau,num,question, reponse,rep1,rep2,rep3,id);
             return quest;
         } else{
             curseur.close();
-            questions quest= new questions(matiere,niveau,num,question, reponse,rep1,id);
+            questions quest= new questions(theme,niveau,num,question, reponse,rep1,id);
             return quest;
         }
     }
@@ -98,7 +100,12 @@ public class DAOBase{
     public void addUser(String prenom,String nom,String avatar){
             db=accesDB.getWritableDatabase();
         String req="insert into utilisateurs(prenom, nom, avatar) values ("+"\""+prenom+"\""+","+"\""+nom+"\""+","+"\""+avatar+"\""+")";
-        db.execSQL(req);
+        try {
+            db.execSQL(req);
+        }catch (Exception e){
+
+        }
+
     }
 
     public ArrayList<utilisateurs> selectUser(){
@@ -161,7 +168,7 @@ public class DAOBase{
         db=accesDB.getReadableDatabase();
         String req="Select * from questionUtilisateurValidee where idQuestion="+idQuest+" and idUtilisateur="+idUser+";";
         Cursor curseur=db.rawQuery(req, null);
-        curseur.moveToFirst();
+        curseur.moveToLast();
         if(curseur.isAfterLast()){
             return false;
         }else {

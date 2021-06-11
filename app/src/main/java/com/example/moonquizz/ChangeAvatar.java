@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.moonquizz.controler.controler;
@@ -34,7 +35,7 @@ public class ChangeAvatar extends AppCompatActivity {
         for(int i =1; i<18;i++){
             ImageButton button = new ImageButton(this);
             button.setLayoutParams(new LinearLayout.LayoutParams(200,200));
-
+            button.setScaleType(ImageButton.ScaleType.FIT_CENTER);
             String avatar="avatar"+i;
 
             int id = getResources().getIdentifier(avatar, "drawable", ChangeAvatar.this.getPackageName());

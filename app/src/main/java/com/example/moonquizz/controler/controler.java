@@ -3,10 +3,12 @@ package com.example.moonquizz.controler;
 import android.service.controls.Control;
 import android.content.Context;
 import com.example.moonquizz.model.DAOBase;
+import com.example.moonquizz.model.operation;
 import com.example.moonquizz.model.questions;
 import com.example.moonquizz.model.utilisateurs;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public final class controler {
 
@@ -16,6 +18,9 @@ public final class controler {
     private static String CurrentTheme;
     private static int CurrentLvl;
     private static  questions CurrentQuest;
+    private static ArrayList<operation> tableOperation;
+    private static ArrayList<float[]> tableReponse;
+
 
     public static utilisateurs getCurrentUser() {
         return CurrentUser;
@@ -49,6 +54,22 @@ public final class controler {
         CurrentQuest = currentQuest;
     }
 
+    public static ArrayList<operation> getOperation() {
+        return tableOperation;
+    }
+
+    public static void setOperation(ArrayList<operation> operation) {
+        controler.tableOperation = operation;
+    }
+
+    public static ArrayList<float[]> getTableReponse() {
+        return tableReponse;
+    }
+
+    public static void setTableReponse(ArrayList<float[]> tableReponse) {
+        controler.tableReponse = tableReponse;
+    }
+
     private controler(){
         super();
     }
@@ -60,6 +81,24 @@ public final class controler {
         }
         return controler.instance;
     }
+
+    public void genOp(String op){
+        int operand1;
+        int operand2;
+        operation operation;
+        Random random= new Random() ;
+        for(int i=0; i<10; i++){
+            operand1=random.nextInt(99)+1;
+            operand2=random.nextInt(99)+1;
+            operation= new operation(operand1,operand2, op);
+            tableOperation.add(operation);
+
+        }
+    }
+
+
+
+
 
     public void ajoutUtilisateur(String prenom, String nom, String avatar){
         DAO.addUser(prenom, nom, avatar);
@@ -103,6 +142,6 @@ public final class controler {
     }
 
     public void valideQuest(){
-        DAO.valideQuest(CurrentQuest.getId(),CurrentQuest.getId());
+        DAO.valideQuest(CurrentQuest.getId(),CurrentUser.getId());
     }
 }

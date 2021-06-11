@@ -27,6 +27,7 @@
             android:layout_weight="1"
             />
     <ImageButton
+        android:scaleType="fitCenter"
         android:id="@+id/avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
