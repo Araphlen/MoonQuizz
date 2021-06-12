@@ -14,18 +14,19 @@ import com.example.moonquizz.model.questions;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class QCM extends AppCompatActivity {
+public class MCQActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qcm);
+        setContentView(R.layout.activity_mcq);
         init();
     }
 
     private controller controller;
 
     private void init(){
+        //On récupère le controller
         this.controller = controller.getInstance(this);
         questions quest= controller.getCurrentQuest();
         String enonce = quest.getQuestion();
@@ -36,9 +37,8 @@ public class QCM extends AppCompatActivity {
     }
 
     private void genRep(){
+        //Génération de l'ordre des réponses aléatoires
         int n=4;
-
-
         int[] idButton = new int[4];
 
         idButton[0]=R.id.rep0;
@@ -62,21 +62,22 @@ public class QCM extends AppCompatActivity {
 
             Button reponse=findViewById(idButton[i]);
             reponse.setText(rep);
-
+            //Si c'est la bonne réponse, on envoie sur la page Gagné
             if(rep.equals(controller.getCurrentQuest().getReponse())){
                 reponse.setOnClickListener(new  View.OnClickListener() {
                     public void onClick(View v) {
                         controller.valideQuest();
-                        Intent intent = new Intent(QCM.this,Gagne.class);
+                        Intent intent = new Intent(MCQActivity.this, WinActivity.class);
                         String page = "QCM";
                         intent.putExtra("PAGE", page);
                         startActivity(intent);
                     }
                 });
+                //Sinon on envoie sur la page perdu
             } else{
                 reponse.setOnClickListener(new  View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(QCM.this,Perdu.class);
+                        Intent intent = new Intent(MCQActivity.this, LostActivity.class);
                         String page = "QCM";
                         intent.putExtra("PAGE", page);
                         startActivity(intent);

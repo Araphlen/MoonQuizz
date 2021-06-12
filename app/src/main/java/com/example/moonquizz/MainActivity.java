@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private void demarrer(){
         findViewById(R.id.start).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this,StartPage.class);
+                    Intent intent = new Intent(MainActivity.this, StartActivity.class);
                 startActivity(intent);
             }
         });

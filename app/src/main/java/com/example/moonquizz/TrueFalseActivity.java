@@ -14,12 +14,12 @@ import com.example.moonquizz.model.questions;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class VraiFaux extends AppCompatActivity {
+public class TrueFalseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vrai_faux);
+        setContentView(R.layout.activity_true_false);
         init();
     }
 
@@ -35,7 +35,7 @@ public class VraiFaux extends AppCompatActivity {
         theme.setText(enonce);
         genRep();
     }
-
+//Génération de l'ordre des réponse aléatoire
     private void genRep(){
         int n=2;
 
@@ -59,22 +59,23 @@ public class VraiFaux extends AppCompatActivity {
 
            Button reponse=findViewById(idButton[i]);
            reponse.setText(rep);
-
+            //Si c'est la bonne réponse, on envoie sur la page Gagné
            if(rep.equals(controller.getCurrentQuest().getReponse())){
                reponse.setOnClickListener(new  View.OnClickListener() {
                    public void onClick(View v) {
                         controller.valideQuest();
-                       Intent intent = new Intent(VraiFaux.this,Gagne.class);
+                       Intent intent = new Intent(TrueFalseActivity.this, WinActivity.class);
                        String page = "VF";
                        intent.putExtra("PAGE", page);
                        finish();
                        startActivity(intent);
                    }
                });
+               //Sinon on envoie sur la page perdu
            } else{
                reponse.setOnClickListener(new  View.OnClickListener() {
                    public void onClick(View v) {
-                       Intent intent = new Intent(VraiFaux.this,Perdu.class);
+                       Intent intent = new Intent(TrueFalseActivity.this, LostActivity.class);
                        String page = "VF";
                        intent.putExtra("PAGE", page);
                        finish();

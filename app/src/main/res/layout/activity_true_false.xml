@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Gagne"
+    tools:context=".TrueFalseActivity"
     android:orientation="vertical">
 
 
@@ -14,51 +14,48 @@
         android:layout_height="50dp"/>
 
     <TextView
+        android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/felicitation_bonne_reponse"
+        android:text="Question"
         android:gravity="center"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/felicitation_texte"
-        android:layout_gravity="center"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <Button
-            android:id="@+id/suiv"
+            android:id="@+id/rep0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/question_suivante"
-            android:layout_gravity="center"
-            />
+            android:text="Vrai"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
+
         <Button
-            android:id="@+id/retour"
+            android:id="@+id/rep1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/menu_question_btn"
-            android:layout_gravity="center"
-            />
+            android:text="Faux"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

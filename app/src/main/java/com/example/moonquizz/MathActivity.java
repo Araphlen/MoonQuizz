@@ -11,18 +11,19 @@ import android.widget.ImageButton;
 
 import com.example.moonquizz.controler.controller;
 
-public class Mathematique extends AppCompatActivity {
+public class MathActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mathematique);
+        setContentView(R.layout.activity_math);
         init();
     }
 
     private controller controller;
 
     private void init() {
+        //On récupère le controller
         this.controller = controller.getInstance(this);
         addition();
         soustraction();
@@ -37,9 +38,10 @@ public class Mathematique extends AppCompatActivity {
 
         add.setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Mathematique.this,OperationActivity.class);
+                Intent intent = new Intent(MathActivity.this,OperationActivity.class);
                 String pages = "0";
                 String occur= "premier";
+                //Génération des 10 opérations
                 controller.genOp("+");
                 intent.putExtra("PAGE", pages);
                 intent.putExtra("OCCUR",occur);
@@ -54,9 +56,10 @@ public class Mathematique extends AppCompatActivity {
 
         sous.setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Mathematique.this,OperationActivity.class);
+                Intent intent = new Intent(MathActivity.this,OperationActivity.class);
                 String pages = "0";
                 String occur= "premier";
+                //Génération des 10 opérations
                 controller.genOp("-");
                 intent.putExtra("PAGE", pages);
                 intent.putExtra("OCCUR",occur);
@@ -71,9 +74,10 @@ public class Mathematique extends AppCompatActivity {
 
         mult.setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Mathematique.this,OperationActivity.class);
+                Intent intent = new Intent(MathActivity.this,OperationActivity.class);
                 String pages = "0";
                 String occur= "premier";
+                //Génération des 10 opérations
                 controller.genOp("*");
                 intent.putExtra("PAGE", pages);
                 intent.putExtra("OCCUR",occur);
@@ -88,9 +92,10 @@ public class Mathematique extends AppCompatActivity {
 
         div.setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Mathematique.this,OperationActivity.class);
+                Intent intent = new Intent(MathActivity.this,OperationActivity.class);
                 String pages = "0";
                 String occur= "premier";
+                //Génération des 10 opérations
                 controller.genOp("/");
                 intent.putExtra("PAGE", pages);
                 intent.putExtra("OCCUR",occur);
@@ -100,16 +105,18 @@ public class Mathematique extends AppCompatActivity {
         });
     }
 
+    //Renvoie au bouton avatar
     private void avatar() {
+        //Récupération de l'avatar de l'utilisateur
         String name = controller.getCurrentUser().getAvatar();
-        int id = getResources().getIdentifier(name, "drawable", Mathematique.this.getPackageName());
+        int id = getResources().getIdentifier(name, "drawable", MathActivity.this.getPackageName());
         Drawable drawable = getResources().getDrawable(id);
         ImageButton button = findViewById(R.id.avatar);
         button.setImageDrawable(drawable);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Mathematique.this, ChangeAvatar.class);
+                Intent intent = new Intent(MathActivity.this, AvatarActivity.class);
                 String page = "math";
                 intent.putExtra("PAGE", page);
                 startActivity(intent);
@@ -117,10 +124,11 @@ public class Mathematique extends AppCompatActivity {
         });
     }
 
+    //Renvoie a la liste des theme
     private void retour(){
         findViewById(R.id.retour).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Mathematique.this,ThemePage.class);
+                Intent intent = new Intent(MathActivity.this, ThemeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

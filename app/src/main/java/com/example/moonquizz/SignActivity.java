@@ -11,18 +11,23 @@ import android.widget.Toast;
 
 import com.example.moonquizz.controler.controller;
 
-public class SignPage extends AppCompatActivity {
+public class SignActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_page);
+        setContentView(R.layout.activity_sign);
+
+    }
+
+    private controller controller;
+
+    private void init(){
+        //On récupère le controller
         this.controller = controller.getInstance(this);
         inscrire();
         retour();
     }
-
-    private controller controller;
 
 
     private void inscrire(){
@@ -37,26 +42,29 @@ public class SignPage extends AppCompatActivity {
                     prenom=repprenom.getText().toString();
                 }catch (Exception e){
                 }
+                //On vérifie que l'utilisateur a bien donné un nom et un prénom
                 if(nom.equals("") || prenom.equals("")){
-                    Toast.makeText(SignPage.this, "Veuillez saisir un Nom et un Prenom", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignActivity.this, "Veuillez saisir un Nom et un Prenom", Toast.LENGTH_LONG).show();
                 } else{
                     ajout(prenom, nom);
-                    Intent intent= new Intent(SignPage.this, ThemePage.class);
+                    Intent intent= new Intent(SignActivity.this, ThemeActivity.class);
                     startActivity(intent);
                 }
             }
         });
     }
 
+    //Ajoute un utilisateur a la base de donnée
     private void ajout(String prenom, String nom){
         this.controller.ajoutUtilisateur(prenom, nom, "avatar");
 
     }
 
+    //Renvoie a la page de base
     private void retour(){
         findViewById(R.id.home).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(SignPage.this,StartPage.class);
+                Intent intent = new Intent(SignActivity.this, StartActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

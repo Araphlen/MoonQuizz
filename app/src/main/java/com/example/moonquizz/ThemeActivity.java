@@ -10,12 +10,12 @@ import android.widget.ImageButton;
 
 import com.example.moonquizz.controler.controller;
 
-public class ThemePage extends AppCompatActivity {
+public class ThemeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_theme_page);
+        setContentView(R.layout.activity_theme);
         init();
     }
 
@@ -34,39 +34,40 @@ public class ThemePage extends AppCompatActivity {
         avatar();
     }
 
-
+    //Renvoie a la page de base
     private void retour(){
         findViewById(R.id.home).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ThemePage.this,StartPage.class);
+                Intent intent = new Intent(ThemeActivity.this, StartActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
     }
-
+    //Renvoie à la page avatar
     private void avatar()    {
+        //Récupère l'avatar actuel de l'utilisateur
             String name= controller.getCurrentUser().getAvatar();
-            int id = getResources().getIdentifier(name, "drawable", ThemePage.this.getPackageName());
+            int id = getResources().getIdentifier(name, "drawable", ThemeActivity.this.getPackageName());
             Drawable drawable = getResources().getDrawable(id);
         ImageButton button=findViewById(R.id.avatar);
             button.setImageDrawable(drawable);
 
         button.setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ThemePage.this,ChangeAvatar.class);
+                Intent intent = new Intent(ThemeActivity.this, AvatarActivity.class);
                 String page = "theme";
                 intent.putExtra("PAGE", page);
                 startActivity(intent);
             }
         });
     }
-
+//Bouton des différents thèmes
     private void themeGeo(){
         findViewById(R.id.Geographie).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
                 controller.setCurrentTheme("Geographie");
-                Intent intent = new Intent(ThemePage.this,Niveau.class);
+                Intent intent = new Intent(ThemeActivity.this, LevelActivity.class);
                 startActivity(intent);
             }
         });
@@ -75,7 +76,7 @@ public class ThemePage extends AppCompatActivity {
         findViewById(R.id.Histoire).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
                 controller.setCurrentTheme("Histoire");
-                Intent intent = new Intent(ThemePage.this,Niveau.class);
+                Intent intent = new Intent(ThemeActivity.this, LevelActivity.class);
                 startActivity(intent);
             }
         });
@@ -84,7 +85,7 @@ public class ThemePage extends AppCompatActivity {
         findViewById(R.id.Science).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
                 controller.setCurrentTheme("Science");
-                Intent intent = new Intent(ThemePage.this,Niveau.class);
+                Intent intent = new Intent(ThemeActivity.this, LevelActivity.class);
                 startActivity(intent);
             }
         });
@@ -93,7 +94,7 @@ public class ThemePage extends AppCompatActivity {
         findViewById(R.id.Animaux).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
                 controller.setCurrentTheme("Animaux");
-                Intent intent = new Intent(ThemePage.this,Niveau.class);
+                Intent intent = new Intent(ThemeActivity.this, LevelActivity.class);
                 startActivity(intent);
             }
         });
@@ -102,7 +103,7 @@ public class ThemePage extends AppCompatActivity {
         findViewById(R.id.Francais).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
                 controller.setCurrentTheme("Francais");
-                Intent intent = new Intent(ThemePage.this,Niveau.class);
+                Intent intent = new Intent(ThemeActivity.this, LevelActivity.class);
                 startActivity(intent);
             }
         });
@@ -111,7 +112,7 @@ public class ThemePage extends AppCompatActivity {
         findViewById(R.id.Mythologie).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
                 controller.setCurrentTheme("Mythologie");
-                Intent intent = new Intent(ThemePage.this,Niveau.class);
+                Intent intent = new Intent(ThemeActivity.this, LevelActivity.class);
                 startActivity(intent);
             }
         });
@@ -120,7 +121,7 @@ public class ThemePage extends AppCompatActivity {
     private void themeMath(){
         findViewById(R.id.Mathematique).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ThemePage.this,Mathematique.class);
+                Intent intent = new Intent(ThemeActivity.this, MathActivity.class);
                 startActivity(intent);
             }
         });

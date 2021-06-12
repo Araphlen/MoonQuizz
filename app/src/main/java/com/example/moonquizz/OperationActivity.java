@@ -31,6 +31,7 @@ public class OperationActivity extends AppCompatActivity {
 
 
     private void init(){
+        //On récupère le controller
         this.controller = controller.getInstance(this);
 
 
@@ -46,7 +47,7 @@ public class OperationActivity extends AppCompatActivity {
 
     }
 
-
+//Affichage de la question lié à la page
     private  void afficheQuest(int page){
         ArrayList<operation> listeOp= controller.getOperation();
        TextView operand1View=findViewById(R.id.operand1);
@@ -58,12 +59,13 @@ public class OperationActivity extends AppCompatActivity {
     operand1View.setText(operand1);
     operand2View.setText(operand2);
     operatorView.setText(operation.getOperation());
+    //Si l'utilisateur arrive pour la première fois sur la question, rajout un slot a la liste
     if(controller.getTableReponse().size()<page+1){
         float base = 0;
         controller.getTableReponse().add(base);
         EditText reponse =findViewById(R.id.rep);
         reponse.setHint("0");
-
+//Sinon on récupère la réponse
     } else {
         float val = controller.getTableReponse().get(page);
         String rep= Float.toString(val);
@@ -73,9 +75,11 @@ public class OperationActivity extends AppCompatActivity {
 
     }
 
+    //Affiche les boutons en fonction de la page
     private void afficheBouton(int page, String occur) {
         LinearLayout boutons = findViewById(R.id.boutons);
-        if (page != 0) {
+        //N'affiche pas le bouton retour si première page
+        if (page != 0  && occur.equals("premier")) {
             Button retour = new Button(this);
             retour.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
             retour.setText("Précedent");
@@ -100,6 +104,7 @@ public class OperationActivity extends AppCompatActivity {
         });
             boutons.addView(retour);
         }
+        //Création intervalle
         TextView intervalle = new TextView(this);
         intervalle.setLayoutParams(new LinearLayout.LayoutParams( LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -107,7 +112,8 @@ public class OperationActivity extends AppCompatActivity {
 
         boutons.addView(intervalle);
 
-        if (page == 9 ) {
+        //Si on arrive à la fin, transforme le bouton en valider
+        if (page == 9) {
             EditText reponse=findViewById(R.id.rep);
             Button suiv= new Button(this);
             suiv.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
@@ -121,12 +127,12 @@ public class OperationActivity extends AppCompatActivity {
                     float rep=Float.valueOf(srep);
 
                     controller.changeRep(page, rep);
-                    Intent intent = new Intent(OperationActivity.this,ResultatActivity.class);
+                    Intent intent = new Intent(OperationActivity.this, ResultActivity.class);
                     intent.putExtra("OCCUR",occur);
                     startActivity(intent);
                 }
             });        boutons.addView(suiv);
-
+            //Sinon bouton question suivante
         } else {
             EditText reponse=findViewById(R.id.rep);
 
@@ -152,7 +158,7 @@ public class OperationActivity extends AppCompatActivity {
         }
 
     }
-
+    //Si on est au passage de la correction, affiche si un warning la réponse était fausse au premier essai
     private void afficheError(int page){
             ImageView warning = new ImageView(this);
             warning.setLayoutParams(new LinearLayout.LayoutParams(50,50));

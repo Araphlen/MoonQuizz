@@ -13,7 +13,7 @@ import android.widget.RelativeLayout.LayoutParams;
 
 import com.example.moonquizz.controler.controller;import java.util.ArrayList;
 
-public class LoginPage extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class LoginPage extends AppCompatActivity {
     private controller controller;
 
     private void init(){
+        //On récupère le controller
         this.controller = controller.getInstance(this);
         ArrayList<utilisateurs> listeUser ;
         listeUser= this.controller.recupListeUser();
@@ -58,8 +59,9 @@ public class LoginPage extends AppCompatActivity {
             //Ajout de la fonction au bouton
             joueur.setOnClickListener(new  View.OnClickListener() {
                 public void onClick(View v) {
+                    //Selection de l'utilisateur actuel
                     controller.setCurrentUser(controller.recupUserByID(id));
-                    Intent intent = new Intent(LoginPage.this,ThemePage.class);
+                    Intent intent = new Intent(LoginActivity.this, ThemeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -70,7 +72,7 @@ public class LoginPage extends AppCompatActivity {
     private void retour(){
         findViewById(R.id.home).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this,StartPage.class);
+                Intent intent = new Intent(LoginActivity.this, StartActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -80,7 +82,7 @@ public class LoginPage extends AppCompatActivity {
     private void supprimer(){
         findViewById(R.id.supprimer).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this,SupprimerPage.class);
+                Intent intent = new Intent(LoginActivity.this, DelUserActivity.class);
                 startActivity(intent);
             }
         });

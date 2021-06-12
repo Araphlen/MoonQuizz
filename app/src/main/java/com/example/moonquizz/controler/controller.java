@@ -75,8 +75,9 @@ public final class controller {
         super();
     }
 
-    //Récupération du controler
+    //Récupération du controller
     public static  final controller getInstance(Context context){
+        //Création du controller et de la base s'ils n'existent pas
         if(controller.instance == null){
             controller.instance= new controller();
             DAO= new DAOBase(context);
@@ -143,7 +144,7 @@ public final class controller {
 
     //Récupère la liste des utilisateur
     public ArrayList<utilisateurs> recupListeUser(){
-        return DAO.selectUser();
+        return DAO.selectAllUser();
     }
 
     //Supprimer un utilisateur

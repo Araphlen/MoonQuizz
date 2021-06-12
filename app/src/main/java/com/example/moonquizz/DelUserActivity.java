@@ -15,12 +15,12 @@ import com.example.moonquizz.model.utilisateurs;
 
 import java.util.ArrayList;
 
-public class SupprimerPage extends AppCompatActivity {
+public class DelUserActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_supprimer_page);
+        setContentView(R.layout.activity_del_user);
         init();
         retour();
     }
@@ -60,7 +60,7 @@ public class SupprimerPage extends AppCompatActivity {
             joueur.setOnClickListener(new  View.OnClickListener() {
                 public void onClick(View v) {
                     controller.deleteUser(id);
-                    Intent intent = new Intent(SupprimerPage.this,LoginPage.class);
+                    Intent intent = new Intent(DelUserActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
             });
@@ -70,7 +70,7 @@ public class SupprimerPage extends AppCompatActivity {
     private void retour(){
         findViewById(R.id.home).setOnClickListener(new  View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(SupprimerPage.this,StartPage.class);
+                Intent intent = new Intent(DelUserActivity.this, StartActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

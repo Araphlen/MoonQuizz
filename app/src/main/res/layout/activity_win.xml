@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Gagne"
+    tools:context=".WinActivity"
     android:orientation="vertical">
 
 
@@ -16,12 +16,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="C'est dommage ! Tu t'es trompé !"
+        android:text="@string/felicitation_bonne_reponse"
         android:gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tu feras mieux la prochaine fois !"
+        android:text="@string/felicitation_texte"
         android:layout_gravity="center"/>
 
     <TextView
@@ -29,15 +29,16 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <Button
-            android:id="@+id/retry"
+            android:id="@+id/suiv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Réessayer"
+            android:text="@string/question_suivante"
             android:layout_gravity="center"
             />
 
@@ -49,11 +50,10 @@
             android:id="@+id/retour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Menu question"
+            android:text="@string/menu_question_btn"
             android:layout_gravity="center"
             />
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
